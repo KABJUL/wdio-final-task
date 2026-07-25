@@ -53,11 +53,6 @@ Use a Data Provider to test login with:
 
 ---
 
-<!-- WIP START -->
-
-🚧 **Work in Progress**
-The following sections are still under development and may change.
-
 ## Supported Browsers
 
 The test suite is configured to run in parallel on:
@@ -111,14 +106,10 @@ npm run wdio
 
 ---
 
-## Running Tests in Parallel
+<!-- WIP START -->
 
-The WebDriverIO configuration (Instances: 2) is set up to execute tests in parallel on:
-
-- Chrome
-- Microsoft Edge
-
----
+🚧 **Work in Progress**
+The following sections are still under development and may change.
 
 ## Generating the Allure Report
 

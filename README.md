@@ -60,7 +60,7 @@ The following sections are still under development and may change.
 
 ## Supported Browsers
 
-Tests run in parallel on:
+The test suite is configured to run in parallel on:
 
 - Google Chrome
 - Microsoft Edge
@@ -70,15 +70,15 @@ Tests run in parallel on:
 ## Project Structure
 
 ```
-.
-├── test/
+├── src/
+│ └── test/
 │   ├── specs/
 │   ├── pageobjects/
-│   └── data/
 ├── allure-results/
 ├── allure-report/
 ├── wdio.conf.js
 ├── package.json
+├── package-lock.json
 └── README.md
 ```
 
@@ -89,8 +89,8 @@ Tests run in parallel on:
 Clone the repository:
 
 ```bash
-git clone <repository-url>
-cd <project-folder>
+git clone <git@github.com:KABJUL/wdio-final-task.git>
+cd <wdio-final-task>
 ```
 
 Install dependencies:
@@ -113,10 +113,10 @@ npm run wdio
 
 ## Running Tests in Parallel
 
-The WebDriverIO configuration (Instances: TCs x 2) is set up to execute tests in parallel on:
+The WebDriverIO configuration (Instances: 2) is set up to execute tests in parallel on:
 
 - Chrome
-- Edge
+- Microsoft Edge
 
 ---
 

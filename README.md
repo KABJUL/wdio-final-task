@@ -144,36 +144,63 @@ Benefits include:
 - Cleaner test code
 - Easier scalability
 
----
+<!-- WIP END -->
+
+🚧
 
 ## Test Data
 
-The checkout product is parameterized, allowing different products to be tested without changing the test logic.
+The tests use predefined test data required for the execution.
 
-Example:
+### Checkout Product
+
+The checkout flow currently validates the following product:
 
 ```javascript
-const productName = "Sauce Labs Backpack";
+const productName = "Sauce Labs Bike Light";
 ```
 
----
+### Login Credentials
+
+The Login test uses a data provider containing different user credentials and expected results:
+
+```javascript
+[
+  {
+    username: "standard_user",
+    password: "secret_sauce",
+    expected: "success",
+  },
+  {
+    username: "locked_out_user",
+    password: "secret_sauce",
+    expected: "error",
+  },
+];
+```
 
 ## Expected Results
 
-### Checkout
+### UC-1 Checkout Flow
 
-The checkout is considered successful when the following message is displayed:
+The checkout flow is considered successful when:
+
+- The selected product is present in the cart.
+- The checkout process can be completed successfully.
+- The confirmation message is displayed:
 
 ```
+
 Thank you for your order!
+
 ```
 
-### Login
+### UC-2 Login
 
-| User            | Expected Result            |
-| --------------- | -------------------------- |
-| standard_user   | Successful login           |
-| locked_out_user | Error message is displayed |
+| User            | Expected Result                                                                                                           |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| standard_user   | Login is successful. The inventory page is displayed with the Products title and the hamburger menu button is displayed.  |
+| locked_out_user | Login is unsuccessful and the following error message is displayed: `Epic sadface: Sorry, this user has been locked out.` |
 
 ---
 
@@ -183,5 +210,3 @@ Thank you for your order!
 - Supports parallel execution.
 - Generates Allure HTML reports.
 - Compatible with Node.js **v24.15.0**.
-
-<!-- WIP END -->

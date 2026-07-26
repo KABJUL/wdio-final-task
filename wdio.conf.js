@@ -20,7 +20,7 @@ export const config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./src/test/specs/**/*.js"],
+  specs: ["./src/test/specs/**/*.e2e.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -63,7 +63,7 @@ export const config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: "info",
+  logLevel: "error",
   //
   // Set specific log levels per logger
   // loggers:

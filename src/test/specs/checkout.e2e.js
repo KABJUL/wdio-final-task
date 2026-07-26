@@ -2,6 +2,8 @@ import { expect } from "@wdio/globals";
 import Page from "../pageobjects/page.js";
 import LoginPage from "../pageobjects/login.page.js";
 import InventoryPage from "../pageobjects/inventory.page.js";
+import CartPage from "../pageobjects/cart.page.js";
+import CheckoutPage from "../pageobjects/checkout.page.js";
 
 const page = new Page();
 
@@ -17,31 +19,24 @@ describe("Checkout Flow", () => {
     await InventoryPage.addBikeLightToCart();
 
     // 4. Navigate to the cart
-    await $(".shopping_cart_link").click();
+    await CartPage.openCart();
 
     // 5. Check if the right product is in the cart
-    const product = await $(".inventory_item_name");
+    const product = await CartPage.productName;
 
     await expect(product).toHaveText("Sauce Labs Bike Light");
 
     // 6. Proceed to checkout
-    await $("#checkout").click();
+    await CheckoutPage.startCheckout();
 
     // 7. Fill in the Information form (First Name, Last Name, Zip/Postal Code)
-    await $("#first-name").setValue("John");
+    await CheckoutPage.fillIn("John", "Doe", "12345");
 
-    await $("#last-name").setValue("Doe");
-
-    await $("#postal-code").setValue("12345");
-
-    // 8. Continue
-    await $("#continue").click();
-
-    // 9. Finish order
-    await $("#finish").click();
+    // 8. Continue checkout and finish order
+    await CheckoutPage.finishOrder();
 
     // 10. Validate the success message: "Thank you for your order!"
-    const successMessage = await $(".complete-header");
+    const successMessage = await CheckoutPage.successMessage;
 
     await expect(successMessage).toHaveText("Thank you for your order!");
   });

@@ -14,10 +14,15 @@ class LoginPage extends Page {
     return $("#login-button");
   }
 
+  get errorMessage() {
+    return $(".error-message-container");
+  }
+
   // Encapsulates login actions previously written directly in the test:
   // await $("#user-name").setValue(username);
   // await $("#password").setValue(password);
   // await $("#login-button").click();
+  // await $(".error-message-container")
 
   async login(username, password) {
     await this.inputUsername.setValue(username);

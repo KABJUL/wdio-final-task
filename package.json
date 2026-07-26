@@ -1,6 +1,7 @@
 {
   "name": "wdio-final-task",
   "type": "module",
+  "private": "true",
   "devDependencies": {
     "@wdio/allure-reporter": "^9.30.0",
     "@wdio/cli": "^9.30.0",

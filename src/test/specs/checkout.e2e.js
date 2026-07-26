@@ -1,19 +1,20 @@
 import { expect } from "@wdio/globals";
+import Page from "../pageobjects/page.js";
+import LoginPage from "../pageobjects/login.page.js";
+import InventoryPage from "../pageobjects/inventory.page.js";
+
+const page = new Page();
 
 describe("Checkout Flow", () => {
   it("should complete the checkout successfully", async () => {
     // 1. Open the webpage (https://www.saucedemo.com/)
-    await browser.url("/");
+    await page.open();
 
     // 2. Login with standard_user (Username) and secret_sauce (Password)
-    await $("#user-name").setValue("standard_user");
-
-    await $("#password").setValue("secret_sauce");
-
-    await $("#login-button").click();
+    await LoginPage.login("standard_user", "secret_sauce");
 
     // 3. Add Sauce Labs Bike Light product to cart
-    await $("#add-to-cart-sauce-labs-bike-light").click();
+    await InventoryPage.addBikeLightToCart();
 
     // 4. Navigate to the cart
     await $(".shopping_cart_link").click();

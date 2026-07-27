@@ -19,8 +19,12 @@ class InventoryPage extends Page {
     return $(".title");
   }
 
-  async addBikeLightToCart() {
-    await this.bikeLightButton.click();
+  async addProduct(productName) {
+    const productId = productName.toLowerCase().replaceAll(" ", "-");
+
+    const productButton = await $(`#add-to-cart-${productId}`);
+
+    await productButton.click();
   }
 }
 export default new InventoryPage();

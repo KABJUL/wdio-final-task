@@ -4,6 +4,7 @@ import LoginPage from "../pageobjects/login.page.js";
 import InventoryPage from "../pageobjects/inventory.page.js";
 import CartPage from "../pageobjects/cart.page.js";
 import CheckoutPage from "../pageobjects/checkout.page.js";
+import checkoutData from "../data/checkout.data.js";
 
 const page = new Page();
 
@@ -16,7 +17,7 @@ describe("Checkout Flow", () => {
     await LoginPage.login("standard_user", "secret_sauce");
 
     // 3. Add Sauce Labs Bike Light product to cart
-    await InventoryPage.addBikeLightToCart();
+    await InventoryPage.addProduct(checkoutData.productName);
 
     // 4. Navigate to the cart
     await CartPage.openCart();
@@ -24,13 +25,17 @@ describe("Checkout Flow", () => {
     // 5. Check if the right product is in the cart
     const product = await CartPage.productName;
 
-    await expect(product).toHaveText("Sauce Labs Bike Light");
+    await expect(product).toHaveText(checkoutData.productName);
 
     // 6. Proceed to checkout
     await CheckoutPage.startCheckout();
 
     // 7. Fill in the Information form (First Name, Last Name, Zip/Postal Code)
-    await CheckoutPage.fillIn("John", "Doe", "12345");
+    await CheckoutPage.fillIn(
+      checkoutData.firstName,
+      checkoutData.lastName,
+      checkoutData.postalCode,
+    );
 
     // 8. Continue checkout and finish order
     await CheckoutPage.finishOrder();

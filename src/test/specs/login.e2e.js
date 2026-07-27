@@ -1,20 +1,7 @@
 import { expect } from "@wdio/globals";
 import LoginPage from "../pageobjects/login.page.js";
 import InventoryPage from "../pageobjects/inventory.page.js";
-
-// Data Provider: An array containing different Login credentials
-const loginData = [
-  {
-    username: "standard_user",
-    password: "secret_sauce",
-    expected: "success",
-  },
-  {
-    username: "locked_out_user",
-    password: "secret_sauce",
-    expected: "error",
-  },
-];
+import loginData from "../data/login.data.js";
 
 describe("Login", () => {
   loginData.forEach((data) => {

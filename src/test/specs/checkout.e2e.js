@@ -23,7 +23,7 @@ describe("Checkout Flow", () => {
     await CartPage.openCart();
 
     // 5. Check if the right product is in the cart
-    const product = await CartPage.productName;
+    const product = CartPage.productName;
 
     await expect(product).toHaveText(checkoutData.productName);
 
@@ -41,7 +41,7 @@ describe("Checkout Flow", () => {
     await CheckoutPage.finishOrder();
 
     // 10. Validate the success message: "Thank you for your order!"
-    const successMessage = await CheckoutPage.successMessage;
+    const successMessage = CheckoutPage.successMessage;
 
     await expect(successMessage).toHaveText("Thank you for your order!");
   });

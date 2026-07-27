@@ -15,13 +15,13 @@ describe("Login", () => {
       // - successful Login displays the Products page and the burger menu
       // - unsuccessful Login displays an error message
       if (data.expected === "success") {
-        const menuButton = await InventoryPage.menuButton;
-        const pageTitle = await InventoryPage.pageTitle;
+        const menuButton = InventoryPage.menuButton;
+        const pageTitle = InventoryPage.pageTitle;
 
         await expect(menuButton).toBeExisting();
         await expect(pageTitle).toHaveText("Products");
       } else {
-        const errorMessage = await LoginPage.errorMessage;
+        const errorMessage = LoginPage.errorMessage;
 
         await expect(errorMessage).toHaveText(
           "Epic sadface: Sorry, this user has been locked out.",

@@ -4,7 +4,6 @@ This project contains automated end-to-end tests for the SauceDemo application u
 
 ## Project Overview
 
-Task description
 "End-to-End" Flow
 
 **Focus:** Happy path execution and checkout logic.
@@ -13,7 +12,7 @@ Task description
 
 ### Test Scenarios
 
-#### UC-1 Checkout Flow:
+#### UC-1 Checkout Flow
 
 1. Login with standard_user.
 
@@ -27,7 +26,7 @@ Task description
 
 6. Complete the checkout and validate the success message: "Thank you for your order!".
 
-#### UC-2 Data Driven Login:
+#### UC-2 Data Driven Login
 
 Use a Data Provider to test login with:
 
@@ -66,9 +65,22 @@ The test suite is configured to run in parallel on:
 
 ```
 ├── src/
-│ └── test/
-│   ├── specs/
-│   ├── pageobjects/
+│   └── test/
+│       ├── data/
+│       │   ├── login.data.js
+│       │   └── checkout.data.js
+│       │
+│       ├── pageobjects/
+│       │   ├── page.js
+│       │   ├── login.page.js
+│       │   ├── inventory.page.js
+│       │   ├── cart.page.js
+│       │   └── checkout.page.js
+│       │
+│       └── specs/
+│           ├── login.e2e.js
+│           └── checkout.e2e.js
+│
 ├── allure-results/
 ├── allure-report/
 ├── wdio.conf.js
@@ -84,8 +96,8 @@ The test suite is configured to run in parallel on:
 Clone the repository:
 
 ```bash
-git clone <git@github.com:KABJUL/wdio-final-task.git>
-cd <wdio-final-task>
+git clone git@github.com:KABJUL/wdio-final-task.git
+cd wdio-final-task
 ```
 
 Install dependencies:
@@ -106,63 +118,42 @@ npm run wdio
 
 ---
 
-<!-- WIP START -->
-
-🚧 **Work in Progress**
-The following sections are still under development and may change.
-
 ## Generating the Allure Report
 
-After the test execution generate the report:
+After the test execution, generate the report:
 
 ```bash
-npx allure ...
+npm run allure:generate
 ```
 
 Open the report:
 
 ```bash
-npx allure open
-```
-
-or generate and open directly:
-
-```bash
-npx allure serve allure-results
+npm run allure:open
 ```
 
 ---
 
-## Design Pattern
-
-This project follows the **Page Object Model (POM)** pattern.
-
-Benefits include:
-
-- Better maintainability
-- Reusable page components
-- Cleaner test code
-- Easier scalability
-
-<!-- WIP END -->
-
-🚧
-
 ## Test Data
 
-The tests use predefined test data required for the execution.
+The tests use predefined test data stored in separate data files.
 
-### Checkout Product
+### Checkout Data
 
-The checkout flow currently validates the following product:
+The checkout flow uses test data containing the selected product and customer information:
 
 ```javascript
-const productName = "Sauce Labs Bike Light";
+{
+  productName: "Sauce Labs Bike Light",
+  firstName: "John",
+  lastName: "Doe",
+  postalCode: "12345",
+}
 ```
 
 ### Login Credentials
 
-The Login test uses a data provider containing different user credentials and expected results:
+The login test uses a data provider containing different user credentials and expected results:
 
 ```javascript
 [
@@ -203,10 +194,3 @@ Thank you for your order!
 | locked_out_user | Login is unsuccessful and the following error message is displayed: `Epic sadface: Sorry, this user has been locked out.` |
 
 ---
-
-## Notes
-
-- Uses CSS selectors for locating elements.
-- Supports parallel execution.
-- Generates Allure HTML reports.
-- Compatible with Node.js **v24.15.0**.
